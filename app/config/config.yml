@@ -79,25 +79,35 @@ sonata_block:
 
 sonata_user:
     security_acl: true
-    manager_type: orm # can be orm or mongodb
-    google_authenticator:
-        enabled: false
-        server:  yourserver.com
+    manager_type: orm # can be orm or mongodb   
+    
+    class:
+        user: Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
+
+    # google_authenticator:
+    #     enabled: false
+    #     server:  yourserver.com
 
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
+    #user_class:     Sonata\UserBundle\Entity\BaseUser #previously without easy-extends
     user_class:     Application\Sonata\UserBundle\Entity\User
+
+
+    group:
+        #group_class:   Sonata\UserBundle\Entity\BaseGroup #previously without easy-extends
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 
-    group:
-        group_class:   Application\Sonata\UserBundle\Entity\Group
-        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
-
-    service:
-        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
 
 doctrine:
     dbal:
@@ -107,6 +117,6 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataUserBundle: ~
                     SonataUserBundle: ~
                     FOSUserBundle: ~                                    # If SonataUserBundle extends it
+                    ApplicationSonataUserBundle: ~
