@@ -50,7 +50,7 @@ class ServiceUser
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Inshore\CareQualityBundle\Entity\Home")
+     * @ORM\ManyToOne(targetEntity="Inshore\CareQualityBundle\Entity\Home", inversedBy="ServiceUsers")
      */
     private $Home;
 
@@ -60,6 +60,18 @@ class ServiceUser
      * @ORM\Column(name="Disability", type="string", length=255)
      */
     private $disability;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inshore\CareQualityBundle\Entity\ServiceUser", mappedBy="CareData")
+     */
+    private $CareDatas;
+
+    /**
+     * @ORM\Column(name="CurrentClient", type="boolean")
+     */
+    private $currentClient;
+
+
 
 
     /**
@@ -170,5 +182,53 @@ class ServiceUser
     public function getDisability()
     {
         return $this->disability;
+    }
+
+    /**
+     * Set dateOfBirth.
+     *
+     * @param \DateTime $dateOfBirth
+     *
+     * @return ServiceUser
+     */
+    public function setDateOfBirth($dateOfBirth)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOfBirth.
+     *
+     * @return \DateTime
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * Set home.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\Home|null $home
+     *
+     * @return ServiceUser
+     */
+    public function setHome(\Inshore\CareQualityBundle\Entity\Home $home = null)
+    {
+        $this->Home = $home;
+
+        return $this;
+    }
+
+    /**
+     * Get home.
+     *
+     * @return \Inshore\CareQualityBundle\Entity\Home|null
+     */
+    public function getHome()
+    {
+        return $this->Home;
     }
 }

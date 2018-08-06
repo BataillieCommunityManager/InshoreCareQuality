@@ -50,7 +50,7 @@ class ServiceUser
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Inshore\CareQualityBundle\Entity\Home")
+     * @ORM\ManyToOne(targetEntity="Inshore\CareQualityBundle\Entity\Home", inversedBy="ServiceUsers")
      */
     private $Home;
 
@@ -60,6 +60,18 @@ class ServiceUser
      * @ORM\Column(name="Disability", type="string", length=255)
      */
     private $disability;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inshore\CareQualityBundle\Entity\ServiceUser", mappedBy="CareData")
+     */
+    private $CareDatas;
+
+    /**
+     * @ORM\Column(name="CurrentClient", type="boolean")
+     */
+    private $currentClient;
+
+
 
 
     /**
@@ -218,5 +230,72 @@ class ServiceUser
     public function getHome()
     {
         return $this->Home;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->CareDatas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set currentClient.
+     *
+     * @param bool $currentClient
+     *
+     * @return ServiceUser
+     */
+    public function setCurrentClient($currentClient)
+    {
+        $this->currentClient = $currentClient;
+
+        return $this;
+    }
+
+    /**
+     * Get currentClient.
+     *
+     * @return bool
+     */
+    public function getCurrentClient()
+    {
+        return $this->currentClient;
+    }
+
+    /**
+     * Add careData.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\ServiceUser $careData
+     *
+     * @return ServiceUser
+     */
+    public function addCareData(\Inshore\CareQualityBundle\Entity\ServiceUser $careData)
+    {
+        $this->CareDatas[] = $careData;
+
+        return $this;
+    }
+
+    /**
+     * Remove careData.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\ServiceUser $careData
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCareData(\Inshore\CareQualityBundle\Entity\ServiceUser $careData)
+    {
+        return $this->CareDatas->removeElement($careData);
+    }
+
+    /**
+     * Get careDatas.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCareDatas()
+    {
+        return $this->CareDatas;
     }
 }

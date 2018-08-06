@@ -165,4 +165,76 @@ class Home
     {
         return $this->ServiceUsers;
     }
+
+    /**
+     * Set phone.
+     *
+     * @param string $phone
+     *
+     * @return Home
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone.
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set phoneIntern.
+     *
+     * @param string $phoneIntern
+     *
+     * @return Home
+     */
+    public function setPhoneIntern($phoneIntern)
+    {
+        $this->phoneIntern = $phoneIntern;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneIntern.
+     *
+     * @return string
+     */
+    public function getPhoneIntern()
+    {
+        return $this->phoneIntern;
+    }
+
+    /**
+     * Set serviceType.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\ServiceType $serviceType
+     *
+     * @return Home
+     */
+    public function setServiceType(\Inshore\CareQualityBundle\Entity\ServiceType $serviceType)
+    {
+        $this->ServiceType = $serviceType;
+
+        return $this;
+    }
+
+    /**
+     * Get serviceType.
+     *
+     * @return \Inshore\CareQualityBundle\Entity\ServiceType
+     */
+    public function getServiceType()
+    {
+        return $this->ServiceType;
+    }
 }
