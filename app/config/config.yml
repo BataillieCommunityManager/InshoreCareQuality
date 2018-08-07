@@ -82,14 +82,6 @@ sonata_admin:
     title_logo: bundles/inshorecarequality/img/Logo.png
     dashboard:
         groups:
-            sonata.admin.group.dashboard_management:
-                label:                "Dashboard Management"
-                icon:                 '<i class="fa fa-pie-chart"></i>'
-                items:
-                    - admin.category
-                    - admin.subcategory
-                    - admin.criteria
-
             sonata.admin.group.inshore:
                 keep_open:            true
                 label:                "Inshore"
@@ -101,6 +93,21 @@ sonata_admin:
                     - admin.servicetype
                     - admin.disability
 
+            sonata.admin.group.dashboard_management:
+                label:                "Dashboard Management"
+                icon:                 '<i class="fa fa-pie-chart"></i>'
+                items:
+                    - admin.category
+                    - admin.subcategory
+                    - admin.criteria
+
+            user:
+                label:                "Users management"
+                icon:                 '<i class="fa fa-users"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+            
 
 sonata_user:
     security_acl: true
