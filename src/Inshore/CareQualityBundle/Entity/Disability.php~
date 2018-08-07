@@ -5,12 +5,12 @@ namespace Inshore\CareQualityBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ServiceType
+ * Disability
  *
- * @ORM\Table(name="inshore_service_type")
- * @ORM\Entity(repositoryClass="Inshore\CareQualityBundle\Repository\ServiceTypeRepository")
+ * @ORM\Table(name="disability")
+ * @ORM\Entity(repositoryClass="Inshore\CareQualityBundle\Repository\DisabilityRepository")
  */
-class ServiceType
+class Disability
 {
     /**
      * @var int
@@ -44,7 +44,7 @@ class ServiceType
      *
      * @param string $name
      *
-     * @return ServiceType
+     * @return Disability
      */
     public function setName($name)
     {

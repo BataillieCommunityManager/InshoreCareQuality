@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Criteria
 {
+
     /**
      * @var int
      *
@@ -31,7 +32,7 @@ class Criteria
     /**
      * @var string
      *
-     * @ORM\Column(name="Caption", type="string", length=255)
+     * @ORM\Column(name="Caption", type="string", length=255, nullable=true)
      */
     private $caption;
 

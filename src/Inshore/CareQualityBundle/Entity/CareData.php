@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="inshore_care_data")
  * @ORM\Entity(repositoryClass="Inshore\CareQualityBundle\Repository\CareDataRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class CareData
 {
@@ -269,4 +270,50 @@ class CareData
     {
         return $this->ServiceUser;
     }
+
+
+
+
+
+
+
+
+
+
+
+    public function __construct()
+    {
+      $this->startDate    = new \Datetime();
+      $this->lastUpdate   = new \Datetime();
+    }
+  
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+      $this->setUpdatedAt(new \Datetime());
+    }
+  
+    public function increaseApplication()
+    {
+      $this->nbApplications++;
+    }
+  
+    public function decreaseApplication()
+    {
+      $this->nbApplications--;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

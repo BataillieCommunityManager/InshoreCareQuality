@@ -1,5 +1,5 @@
 {
-    "name": "cyril/comif",
+    "name": "cyril/inshoreCareQuality",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -7,6 +7,7 @@
             "": "src/",
             "AppBundle\\": "src/AppBundle",
             "Application\\": "src/Application",
+            "App\\": "src/Application",
             "Inshore\\": "src/Inshore"
         },
         "classmap": [

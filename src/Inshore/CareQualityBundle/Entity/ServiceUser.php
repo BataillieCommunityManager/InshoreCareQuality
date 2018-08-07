@@ -55,11 +55,10 @@ class ServiceUser
     private $Home;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Disability", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Inshore\CareQualityBundle\Entity\Disability")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $disability;
+    private $Disability;
 
     /**
      * @ORM\OneToMany(targetEntity="Inshore\CareQualityBundle\Entity\ServiceUser", mappedBy="CareData")
@@ -161,27 +160,27 @@ class ServiceUser
 
 
     /**
-     * Set disability.
+     * Set Disability.
      *
-     * @param string $disability
+     * @param string $Disability
      *
      * @return ServiceUser
      */
-    public function setDisability($disability)
+    public function setDisability($Disability)
     {
-        $this->disability = $disability;
+        $this->Disability = $Disability;
 
         return $this;
     }
 
     /**
-     * Get disability.
+     * Get Disability.
      *
      * @return string
      */
     public function getDisability()
     {
-        return $this->disability;
+        return $this->Disability;
     }
 
     /**
@@ -298,4 +297,21 @@ class ServiceUser
     {
         return $this->CareDatas;
     }
+
+
+
+    /**
+     * Get fullName.
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName." ".strtoupper($this->lastName);
+    }
+
+
+
+
+
 }

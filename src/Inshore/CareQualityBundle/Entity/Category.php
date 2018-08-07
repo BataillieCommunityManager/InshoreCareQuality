@@ -13,6 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Category
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->SubCategories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -31,7 +42,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="Caption", type="string", length=255)
+     * @ORM\Column(name="Caption", type="string", length=255, nullable=true)
      */
     private $caption;
 
@@ -113,13 +124,7 @@ class Category
     {
         return $this->caption;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->SubCategories = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Add subCategory.

@@ -33,3 +33,59 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    admin.category:
+        class: App\Admin\CategoryAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+        public: true
+    
+    admin.subcategory:
+        class: App\Admin\SubCategoryAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\SubCategory, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: SubCategory }
+        public: true
+    
+    admin.caredata:
+        class: App\Admin\CareDataAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\CareData, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Care Data }
+        public: true
+
+    admin.criteria:
+        class: App\Admin\CriteriaAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\Criteria, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Criteria }
+        public: true
+
+    admin.serviceuser:
+        class: App\Admin\ServiceUserAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\ServiceUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Service User }
+        public: true
+
+    admin.home:
+        class: App\Admin\HomeAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\Home, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Home }
+        public: true
+
+    admin.servicetype:
+        class: App\Admin\ServiceTypeAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\ServiceType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Service Type }
+        public: true
+
+    admin.disability:
+        class: App\Admin\DisabilityAdmin
+        arguments: [~, Inshore\CareQualityBundle\Entity\Disability, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Disability }
+        public: true

@@ -77,6 +77,31 @@ sonata_block:
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
 
+sonata_admin:
+    title:      Inshore Quality
+    title_logo: bundles/inshorecarequality/img/Logo.png
+    dashboard:
+        groups:
+            sonata.admin.group.dashboard_management:
+                label:                "Dashboard Management"
+                icon:                 '<i class="fa fa-pie-chart"></i>'
+                items:
+                    - admin.category
+                    - admin.subcategory
+                    - admin.criteria
+
+            sonata.admin.group.inshore:
+                keep_open:            true
+                label:                "Inshore"
+                icon:                 '<i class="fa fa-home"></i>'
+                items:
+                    - admin.caredata
+                    - admin.serviceuser
+                    - admin.home
+                    - admin.servicetype
+                    - admin.disability
+
+
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb   

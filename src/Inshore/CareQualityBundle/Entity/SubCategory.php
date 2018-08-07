@@ -13,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 class SubCategory
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Criterias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -73,13 +83,6 @@ class SubCategory
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->Criterias = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
