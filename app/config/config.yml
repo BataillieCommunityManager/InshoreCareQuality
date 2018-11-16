@@ -66,6 +66,8 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
+    encryption: '%mailer_encryption%'
+    auth_mode: '%mailer_auth_mode%'
     spool: { type: memory }
 
 sonata_block:
@@ -76,20 +78,24 @@ sonata_block:
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+
 
 sonata_admin:
     title:      Inshore Quality
     title_logo: bundles/inshorecarequality/img/Logo.png
+    templates:
+        # other configuration options
+        search:              '@SonataAdmin/Core/search.html.twig'
+        search_result_block: '@SonataAdmin/Block/block_search_result.html.twig'
+
+    global_search:
+        empty_boxes: fade
+
     dashboard:
         groups:
-            sonata.admin.group.dashboard_management:
-                label:                "Dashboard Management"
-                icon:                 '<i class="fa fa-pie-chart"></i>'
-                items:
-                    - admin.category
-                    - admin.subcategory
-                    - admin.criteria
-
             sonata.admin.group.inshore:
                 keep_open:            true
                 label:                "Inshore"
@@ -101,6 +107,21 @@ sonata_admin:
                     - admin.servicetype
                     - admin.disability
 
+            sonata.admin.group.dashboard_management:
+                label:                "Dashboard Management"
+                icon:                 '<i class="fa fa-pie-chart"></i>'
+                items:
+                    - admin.category
+                    - admin.subcategory
+                    - admin.criteria
+
+            user:
+                label:                "Users management"
+                icon:                 '<i class="fa fa-users"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+            
 
 sonata_user:
     security_acl: true
@@ -128,6 +149,13 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+        # mailer: fos_user.mailer.twig_swift
+
+    resetting:
+        email:
+            # template:   'email/password_resetting.email.twig'
+
+        token_ttl: 1 # change this value, it is in seconds = 24 hours
 
     from_email:
         address: "%mailer_user%"

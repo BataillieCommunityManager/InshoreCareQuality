@@ -7,11 +7,21 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SubCategory
  *
- * @ORM\Table(name="sub_category")
+ * @ORM\Table(name="inshore_sub_category")
  * @ORM\Entity(repositoryClass="Inshore\CareQualityBundle\Repository\SubCategoryRepository")
  */
 class SubCategory
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Criterias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
     /**
      * @var int
      *
@@ -38,6 +48,12 @@ class SubCategory
      * @ORM\OneToMany(targetEntity="Inshore\CareQualityBundle\Entity\Criteria", mappedBy="SubCategory")
      */
     private $Criterias;
+
+    /**
+     * @ORM\Column(name="ShowAll", type="boolean", nullable=true)
+     */
+    private $showAll;
+
 
 
 
@@ -73,5 +89,65 @@ class SubCategory
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\Category $category
+     *
+     * @return SubCategory
+     */
+    public function setCategory(\Inshore\CareQualityBundle\Entity\Category $category)
+    {
+        $this->Category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category.
+     *
+     * @return \Inshore\CareQualityBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->Category;
+    }
+
+    /**
+     * Add criteria.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\Criteria $criteria
+     *
+     * @return SubCategory
+     */
+    public function addCriteria(\Inshore\CareQualityBundle\Entity\Criteria $criteria)
+    {
+        $this->Criterias[] = $criteria;
+
+        return $this;
+    }
+
+    /**
+     * Remove criteria.
+     *
+     * @param \Inshore\CareQualityBundle\Entity\Criteria $criteria
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCriteria(\Inshore\CareQualityBundle\Entity\Criteria $criteria)
+    {
+        return $this->Criterias->removeElement($criteria);
+    }
+
+    /**
+     * Get criterias.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCriterias()
+    {
+        return $this->Criterias;
     }
 }

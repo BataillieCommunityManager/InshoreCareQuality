@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 
 //Other entities
 use Inshore\CareQualityBundle\Entity\Category;
@@ -27,6 +29,9 @@ class SubCategoryAdmin extends AbstractAdmin
                 'class' => Category::class,
                 'property' => 'title',
             ])
+            ->add('showAll', CheckboxType::class, [
+                'label'    => 'Always show all the criterias of this SubCategory?',
+            ])
         ;
     }
 
@@ -42,7 +47,8 @@ class SubCategoryAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
-            ->addIdentifier('Category.title')
+            ->add('Category.title')
+            ->add('showAll')
         ;
     }
 }

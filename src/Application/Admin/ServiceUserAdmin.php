@@ -79,14 +79,13 @@ class ServiceUserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('gender')
             ->addIdentifier('firstName')
             ->addIdentifier('lastName')
+            ->add('gender')
             ->add('dateOfBirth')
             ->add('Disability.name')
             ->add('Home.name')
             ->add('currentClient')
-            
         ;
     }
 }

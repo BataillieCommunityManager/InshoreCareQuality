@@ -25,7 +25,7 @@ class CareData
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="StartDate", type="datetime")
+     * @ORM\Column(name="StartDate", type="date")
      */
     private $startDate;
 

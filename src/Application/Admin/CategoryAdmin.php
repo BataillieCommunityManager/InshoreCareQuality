@@ -27,7 +27,7 @@ class CategoryAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('title')
-            ->addIdentifier('caption')
+            ->add('caption')
         ;
     }
 }

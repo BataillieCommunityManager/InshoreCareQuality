@@ -1,3 +1,4 @@
-inshore_care_quality_Homepage:
-    path:     /
-    defaults: { _controller: InshoreCareQualityBundle:Default:index }
+inshore_care_quality_home:
+    path:      /
+    defaults: 
+        _controller:    InshoreCareQualityBundle:Main:index

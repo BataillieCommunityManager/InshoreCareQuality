@@ -1,0 +1,8 @@
+body {
+    margin-top: 58px;
+}
+
+.navbar-brand .logo-brand {
+    height: 150%;
+    margin-top: -5px;
+}

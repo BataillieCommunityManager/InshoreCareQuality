@@ -49,6 +49,12 @@ class SubCategory
      */
     private $Criterias;
 
+    /**
+     * @ORM\Column(name="ShowAll", type="boolean", nullable=true)
+     */
+    private $showAll;
+
+
 
 
     /**
@@ -143,5 +149,29 @@ class SubCategory
     public function getCriterias()
     {
         return $this->Criterias;
+    }
+
+    /**
+     * Set showAll.
+     *
+     * @param bool|null $showAll
+     *
+     * @return SubCategory
+     */
+    public function setShowAll($showAll = null)
+    {
+        $this->showAll = $showAll;
+
+        return $this;
+    }
+
+    /**
+     * Get showAll.
+     *
+     * @return bool|null
+     */
+    public function getShowAll()
+    {
+        return $this->showAll;
     }
 }
