@@ -5,164 +5,172 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}Inshore Quality{% endblock %}</title>
+  <title>{% block title %}{{ currentTitle }} - Inshore Quality{% endblock %}</title>
 
   {% block stylesheets %}
-    {# On charge le CSS de bootstrap depuis le site directement #}
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('bundles/inshorecarequality/css/main.css') }}">
+    <!-- Bootstrap core CSS-->
+    <link href="{{ asset('bundles/inshorecarequality/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/inshorecarequality/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Page level plugin CSS-->
+    <link href="{{ asset('bundles/inshorecarequality/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('bundles/inshorecarequality/css/sb-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/inshorecarequality/css/front.css') }}">
   {% endblock %}
-
-  {# {% stylesheets filter='cssrewrite, ?scssphp' %}
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-  {% endstylesheets %} #}
+  
+  
 </head>
 
-<body>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img class="logo-brand" src="{{ asset('bundles/inshorecarequality/img/Logo.png') }}" />Inshore Quality</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="./">Home</a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-              <li><a href="./admin">Admin</a></li>
-            {% endif %}
-            {# <li><a href="#contact">Contact</a></li> #}
-            {# <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="#"><img class="logo-brand" src="{{ asset('bundles/inshorecarequality/img/Logo.png') }}" />Inshore Quality</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseDashboard" data-parent="#exampleAccordion" aria-expanded="true">
+            <i class="fas fa-tachometer-alt"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+          <ul class="sidenav-second-level collapse show" id="collapseDashboard">
+            <li>
+              <a href="{{ path('inshore_care_quality_dashboard_globaldashboard') }}">Global Dashboard</a>
+            </li>
+            <li>
+              <a href="{{ path('inshore_care_quality_dashboard_serviceuser') }}">Service User Monitoring</a>
+            </li>
+            <li>
+              <a href="{{ path('inshore_care_quality_dashboard_alerts') }}">Alerts Zone</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Submission">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSubmission" data-parent="#exampleAccordion">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span class="nav-link-text">Submission</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseSubmission">
+            <li>
+              <a href="#">Weekly Report</a>
+            </li>
+            <li>
+              <a href="#">Incident Report</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reports Generation">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseReports" data-parent="#exampleAccordion">
+            <i class="fas fa-file-export"></i>
+            <span class="nav-link-text">Reports Generation</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseReports">
+            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseInternalReports">Internal Reports</a>
+              <ul class="sidenav-third-level collapse" id="collapseInternalReports">
+                <li>
+                  <a href="#">Planned</a>
+                </li>
+                <li>
+                  <a href="#">Exceptionnal</a>
+                </li>
               </ul>
-            </li> #}
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <li class="active"><a>{{ app.user.username }}</a></li>
-              <li><a href="{{ path('sonata_user_admin_security_logout') }}">Logout</a></li>
-            {% else %}
-              <li><a href="{{ path('sonata_user_admin_security_login') }}">Login</a></li>
-            {% endif %}
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav><!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img class="logo-brand" src="{{ asset('bundles/inshorecarequality/img/Logo.png') }}" />Inshore Quality</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="./">Home</a></li>
-            {% if is_granted('ROLE_ADMIN') %}
-              <li><a href="./admin">Admin</a></li>
-            {% endif %}
-            {# <li><a href="#contact">Contact</a></li> #}
-            {# <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+            </li>
+            <li>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExternalReports">External Reports</a>
+              <ul class="sidenav-third-level collapse" id="collapseExternalReports">
+                <li>
+                  <a href="#">Planned</a>
+                </li>
+                <li>
+                  <a href="#">Exceptionnal</a>
+                </li>
               </ul>
-            </li> #}
+            </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <li class="active"><a>{{ app.user.username }}</a></li>
-              <li><a>Last login: {{ app.user.lastLogin|date("m/d/Y H:i:s") }}</a></li>
-              <li><a href="{{ path('sonata_user_admin_security_logout') }}">Logout</a></li>
-            {% else %}
-              <li><a href="{{ path('sonata_user_admin_security_login') }}">Login</a></li>
-            {% endif %}
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-
-  <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Inshore Quality Software</h1>
-      <p>
-        Welcome to the Inshore Qualoty Software alpha trial. Please let us know if you have any feedback.
-      </p>
-      <p>
-        <a class="btn btn-primary btn-lg" href="#">
-          Give a feedback »
-        </a>
-      </p>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {{ include("InshoreCareQualityBundle::pop.messages.html.twig") }}
+        {{ include("InshoreCareQualityBundle::pop.alerts.html.twig") }}
+        {% if is_granted('ROLE_ADMIN') %}
+          <li><a class="nav-link" href="./admin"><i class="fas fa-wrench"></i> Admin</a></li>
+        {% endif %}
+        
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <li class="nav-item"><a class="nav-link">{{ app.user.username }}</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('sonata_user_admin_security_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('sonata_user_admin_security_login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+          </li>
+        {% endif %}
+      </ul>
     </div>
+  </nav>
 
-    <div class="row">
-      <div id="menu" class="col-md-3">
-        <h3>My Homes</h3>
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href="#">Accueil</a></li>
-          {% if is_granted('ROLE_AUTEUR') %}
-            <li><a href="#">Ajouter une annonce</a></li>
-          {% endif %}
-        </ul>
 
-      </div>
-      <div id="content" class="col-md-9">
-       
-            <h1>Annonces</h1>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        {% for step in path %}
+          <li class="breadcrumb-item active">{{ step }}</li>
+        {% endfor %}
+      </ol>
+      <div class="row">
+            <div class="col-12">
+                <h1>{{ currentTitle }}</h1>
 
-            <hr>
-
-            {% block ocplatform_body %}
+            {% block inshorecarequality_body %}
             {% endblock %}
-
+            </div>
       </div>
+      
+
     </div>
-
-    <hr>
-
-    <footer>
-      <p>Inshore Support Limited © {{ 'now'|date('Y') }} - All right reserved</p>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Inshore Support Limited © {{ 'now'|date('Y') }} - All right reserved</small>
+        </div>
+      </div>
     </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('bundles/inshorecarequality/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/inshorecarequality/vendor/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('bundles/inshorecarequality/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('bundles/inshorecarequality/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('bundles/inshorecarequality/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('bundles/inshorecarequality/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('bundles/inshorecarequality/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('bundles/inshorecarequality/js/sb-admin.min.js') }}"></script>
+    <!-- Custom scripts for this page-->
+    <script src="{{ asset('bundles/inshorecarequality/js/sb-admin-datatables.min.js') }}"></script>
+    <script src="{{ asset('bundles/inshorecarequality/js/sb-admin-charts.min.js') }}"></script>
   </div>
-
-  {% block javascripts %}
-    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  {% endblock %}
-
-    
-  {# {% javascripts filter='?jsqueeze'
-    'bundles/ocplatform/js/main.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-  {% endjavascripts %} #}
-
 </body>
-
 
 </html>
