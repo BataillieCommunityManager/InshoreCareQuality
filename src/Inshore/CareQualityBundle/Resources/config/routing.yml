@@ -2,3 +2,8 @@ inshore_care_quality_home:
     path:      /
     defaults: 
         _controller:    InshoreCareQualityBundle:Main:index
+
+inshore_care_quality_test:
+    path:      /test
+    defaults: 
+        _controller:    InshoreCareQualityBundle:Main:test

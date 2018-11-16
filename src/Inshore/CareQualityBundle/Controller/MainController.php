@@ -26,4 +26,13 @@ class MainController extends Controller
         ));
     }
 
+    public function testAction()
+    {
+        $path = array("Dashboard", "GlobalDashboard");
+
+        return $this->render('InshoreCareQualityBundle:front:test.html.twig', array(
+            'path'            =>  $path,
+        ));
+    }
+
 }
