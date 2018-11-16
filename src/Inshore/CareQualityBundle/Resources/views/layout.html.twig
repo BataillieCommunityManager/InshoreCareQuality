@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}Inshore Quality{% endblock %}</title>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/inshorecarequality/css/main.css') }}">
+  {% endblock %}
+
+  {# {% stylesheets filter='cssrewrite, ?scssphp' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+  {% endstylesheets %} #}
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img class="logo-brand" src="{{ asset('bundles/inshorecarequality/img/Logo.png') }}" />Inshore Quality</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="./">Home</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+              <li><a href="./admin">Admin</a></li>
+            {% endif %}
+            {# <li><a href="#contact">Contact</a></li> #}
+            {# <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li> #}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              <li class="active"><a>{{ app.user.username }}</a></li>
+              <li><a href="{{ path('sonata_user_admin_security_logout') }}">Logout</a></li>
+            {% else %}
+              <li><a href="{{ path('sonata_user_admin_security_login') }}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav><!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img class="logo-brand" src="{{ asset('bundles/inshorecarequality/img/Logo.png') }}" />Inshore Quality</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="./">Home</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+              <li><a href="./admin">Admin</a></li>
+            {% endif %}
+            {# <li><a href="#contact">Contact</a></li> #}
+            {# <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li> #}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              <li class="active"><a>{{ app.user.username }}</a></li>
+              <li><a>Last login: {{ app.user.lastLogin|date("m/d/Y H:i:s") }}</a></li>
+              <li><a href="{{ path('sonata_user_admin_security_logout') }}">Logout</a></li>
+            {% else %}
+              <li><a href="{{ path('sonata_user_admin_security_login') }}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+  <div class="container">
+    <div id="header" class="jumbotron">
+      <h1>Inshore Quality Software</h1>
+      <p>
+        Welcome to the Inshore Qualoty Software alpha trial. Please let us know if you have any feedback.
+      </p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="#">
+          Give a feedback »
+        </a>
+      </p>
+    </div>
+
+    <div class="row">
+      <div id="menu" class="col-md-3">
+        <h3>My Homes</h3>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#">Accueil</a></li>
+          {% if is_granted('ROLE_AUTEUR') %}
+            <li><a href="#">Ajouter une annonce</a></li>
+          {% endif %}
+        </ul>
+
+      </div>
+      <div id="content" class="col-md-9">
+       
+            <h1>Annonces</h1>
+
+            <hr>
+
+            {% block ocplatform_body %}
+            {% endblock %}
+
+      </div>
+    </div>
+
+    <hr>
+
+    <footer>
+      <p>Inshore Support Limited © {{ 'now'|date('Y') }} - All right reserved</p>
+    </footer>
+  </div>
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+    
+  {# {% javascripts filter='?jsqueeze'
+    'bundles/ocplatform/js/main.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %} #}
+
+</body>
+
+
+</html>
