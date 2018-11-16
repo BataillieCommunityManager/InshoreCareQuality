@@ -20,9 +20,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class MainController extends Controller
 {
-    public function indexAction()
+    public function dashboardglobalAction()
     {
+        $path = array("Dashboard", "Global Dashboard");
+
         return $this->render('InshoreCareQualityBundle::index.html.twig', array(
+            'path'            =>  $path,
+            'currentTitle'    => end($path),
+        ));
+    }
+
+    public function dashboardalertsAction()
+    {
+        $path = array("Dashboard", "Alerts");
+
+        return $this->render('InshoreCareQualityBundle::index.html.twig', array(
+            'path'            =>  $path,
+            'currentTitle'    => end($path),
+        ));
+    }
+
+    public function dashboardserviceuserAction()
+    {
+        $path = array("Dashboard", "Service User");
+
+        return $this->render('InshoreCareQualityBundle::index.html.twig', array(
+            'path'            =>  $path,
+            'currentTitle'    => end($path),
         ));
     }
 

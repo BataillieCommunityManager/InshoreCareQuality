@@ -1,4 +1,19 @@
 inshore_care_quality_home:
     path:      /
     defaults: 
-        _controller:    InshoreCareQualityBundle:Main:index
+        _controller:    InshoreCareQualityBundle:Main:dashboardglobal
+
+inshore_care_quality_dashboard_globaldashboard:
+    path:      /dashboard/globaldashboard
+    defaults: 
+        _controller:    InshoreCareQualityBundle:Main:dashboardglobal
+
+inshore_care_quality_dashboard_alerts:
+    path:      /dashboard/alerts
+    defaults: 
+        _controller:    InshoreCareQualityBundle:Main:dashboardalerts
+
+inshore_care_quality_dashboard_serviceuser:
+    path:      /dashboard/serviceuser
+    defaults: 
+        _controller:    InshoreCareQualityBundle:Main:dashboardserviceuser

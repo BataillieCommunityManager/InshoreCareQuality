@@ -1,4 +1,9 @@
-{% extends "InshoreCareQualityBundle::layout.html.twig" %}
+{% extends "InshoreCareQualityBundle:front:layout.html.twig" %}
+
+{% block title %}
+    Global Dashboard -
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
     {% block inshorecarequality_body %}
